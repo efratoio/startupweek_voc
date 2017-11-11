@@ -9,7 +9,7 @@ import json
 def process_data():
 	data = request.form["data"].split()
 
-	return (jsonify({"category":data[:-1][0],"amount":data[-1][:-1],"currency":data[-1][-1]}), 202)
+	return (jsonify({"category":data[:-1][0],"amount":data[-1][1:],"currency":data[-1][0]}), 202)
 
 
 
