@@ -16,7 +16,6 @@
     "include": [
         "typings/*",
         "src/**/*.ts?",
-        "config.ts",
-        "generated/**/*.ts"
+        "src/**/*.ts"
     ]
 }

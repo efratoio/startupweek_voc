@@ -8,7 +8,7 @@ const extractCSS = new ExtractTextPlugin('[name].css');
 const gitRevision = new GitRevisionPlugin({ lightweightTags: true });
 
 module.exports = {
-    entry: "./src/index.tsx",
+    entry: "./src/app.tsx",
     output: {
         path: __dirname + "/dist",
         filename: "bundle.js",

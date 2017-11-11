@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as css from "./dashboard.scss";
 import { requireLogin } from "utils";
+import { TransactionList, CategoryPieChart } from "ui";
 
 @requireLogin
 export class PageDashboard extends React.Component {
@@ -8,7 +9,9 @@ export class PageDashboard extends React.Component {
         return (
             <div>
                 <h1>Dashboard</h1>
-                <p>Lorem Ipsum dolor sit amet. Edipiscir eunt.</p>
+                <h2>Transactions</h2>
+                <TransactionList />
+                <CategoryPieChart />
             </div>
         );
     }

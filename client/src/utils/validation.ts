@@ -5,6 +5,10 @@ export function validateEMail(email: string): boolean {
     return Boolean(email.match(emailValidationRegex));
 }
 
+export function validateUsername(username: string): boolean {
+    return username.length >= 1;
+}
+
 export function validatePassword(password: string): boolean {
-    return password.length >= 8;
+    return password.length >= 1;
 }

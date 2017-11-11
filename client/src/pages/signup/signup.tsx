@@ -22,7 +22,10 @@ export class PageSignup extends React.Component {
     @bind @action private handleEMail({ target }: React.SyntheticInputEvent) { this.email = target.value; }
     @bind @action private handlePassword({ target }: React.SyntheticInputEvent) { this.password = target.value; }
     @bind @action private handleRepeat({ target }: React.SyntheticInputEvent) { this.repeat = target.value; }
-    @bind private handleSubmit() { this.signup.doSignup(this.email, this.password); }
+    @bind private handleSubmit(event: React.SyntheticEvent<HTMLFormElement>) {
+        event.preventDefault();
+        this.signup.doSignup(this.email, this.password);
+    }
 
     @computed private get emailValid() { return validateEMail(this.email); }
     @computed private get passwordValid() { return validatePassword(this.password) && this.password === this.repeat; }

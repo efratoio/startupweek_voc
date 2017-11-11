@@ -7,23 +7,26 @@ import { observable, action, computed } from "mobx";
 import { observer } from "mobx-react";
 import { inject, external } from "tsdi";
 import bind from "bind-decorator";
-import { validateEMail, validatePassword } from "utils";
+import { validateUsername, validatePassword } from "utils";
 import { RequestStatus } from "request-status";
 
 @external @observer
 export class PageLogin extends React.Component {
     @inject private api: ApiStore;
 
-    @observable private email = "";
+    @observable private username = "";
     @observable private password = "";
 
-    @bind @action private handleEMail({ target }: React.SyntheticInputEvent) { this.email = target.value; }
+    @bind @action private handleUsername({ target }: React.SyntheticInputEvent) { this.username = target.value; }
     @bind @action private handlePassword({ target }: React.SyntheticInputEvent) { this.password = target.value; }
-    @bind private handleSubmit() { this.api.doLogin(this.email, this.password); }
+    @bind private handleSubmit(event: React.SyntheticEvent<HTMLFormElement>) {
+        event.preventDefault();
+        this.api.doLogin(this.username, this.password);
+    }
 
-    @computed private get emailValid() { return validateEMail(this.email); }
+    @computed private get usernameValid() { return validateUsername(this.username); }
     @computed private get passwordValid() { return validatePassword(this.password); }
-    @computed private get allValid() { return this.emailValid && this.passwordValid; }
+    @computed private get allValid() { return this.usernameValid && this.passwordValid; }
 
     public render() {
         return (
@@ -32,10 +35,10 @@ export class PageLogin extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     <p>
                         <label>
-                            Email
+                            Username
                             <input
-                                value={this.email}
-                                onChange={this.handleEMail}
+                                value={this.username}
+                                onChange={this.handleUsername}
                             />
                         </label>
                     </p>

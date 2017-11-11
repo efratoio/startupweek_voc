@@ -10,7 +10,6 @@ const someVersion = "v0.0.0";
 test("The `AppContainer` component is rendered as expected when the user is logged in", () => {
     const api = tsdi.get(ApiStore);
     api.authToken = "test";
-    api.userId = "test";
     const mounted = mount(
         <AppContainer><p>Some Children</p></AppContainer>,
     );
