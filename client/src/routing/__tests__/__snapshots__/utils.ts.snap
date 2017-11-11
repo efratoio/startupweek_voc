@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The route parsing utility detects "/dashboard" correctly 1`] = `
+Object {
+  "route": "dashboard",
+}
+`;
+
+exports[`The route parsing utility detects "/login" correctly 1`] = `
+Object {
+  "route": "login",
+}
+`;
+
+exports[`The route parsing utility detects "/signup" correctly 1`] = `
+Object {
+  "route": "signup",
+}
+`;
+
+exports[`The route parsing utility detects "/unknown" correctly 1`] = `undefined`;

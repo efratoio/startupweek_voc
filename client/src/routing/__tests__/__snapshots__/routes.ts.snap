@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The route "routeDashboard" returns the correct route 1`] = `"/dashboard"`;
+
+exports[`The route "routeLogin" returns the correct route 1`] = `"/login"`;
+
+exports[`The route "routeSignup" returns the correct route 1`] = `"/signup"`;

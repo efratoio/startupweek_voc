@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`\`Errors\` is rendered correctly with a network error 1`] = `
+<Errors>
+  <ErrorComponent
+    message="some.message"
+    title="An Error Occured"
+  >
+    <div>
+      <h1>
+        An Error Occured
+      </h1>
+      <p>
+        some.message
+      </p>
+    </div>
+  </ErrorComponent>
+</Errors>
+`;
+
+exports[`\`Errors\` is renders nothing without an error 1`] = `<Errors />`;

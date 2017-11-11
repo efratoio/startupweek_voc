@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The Api store \`convertBodyCasing\` correctly converts ""test"" 1`] = `"test"`;
+
+exports[`The Api store \`convertBodyCasing\` correctly converts "[{"a":[null,null,null]},{"a":{"b":[5]}}]" 1`] = `
+Array [
+  Object {
+    "a": Array [
+      null,
+      null,
+      null,
+    ],
+  },
+  Object {
+    "a": Object {
+      "b": Array [
+        5,
+      ],
+    },
+  },
+]
+`;
+
+exports[`The Api store \`convertBodyCasing\` correctly converts "[{"a":null,"b":"b"},8]" 1`] = `
+Array [
+  Object {
+    "a": null,
+    "b": "b",
+  },
+  8,
+]
+`;
+
+exports[`The Api store \`convertBodyCasing\` correctly converts "[1,2,3,4]" 1`] = `
+Array [
+  1,
+  2,
+  3,
+  4,
+]
+`;
+
+exports[`The Api store \`convertBodyCasing\` correctly converts "{"UpperCamelCase":"test","camelCaseInContent":"camelCase"}" 1`] = `
+Object {
+  "camel_case_in_content": "camelCase",
+  "upper_camel_case": "test",
+}
+`;
+
+exports[`The Api store \`convertBodyCasing\` correctly converts "{"itHandlesNull":null,"nocamelcase":"test"}" 1`] = `
+Object {
+  "it_handles_null": null,
+  "nocamelcase": "test",
+}
+`;
+
+exports[`The Api store \`convertBodyCasing\` correctly converts "{"not_camel_case":"test"}" 1`] = `
+Object {
+  "not_camel_case": "test",
+}
+`;
+
+exports[`The Api store \`convertBodyCasing\` correctly converts "{"recursivelyConverts":{"anotherKey":{"moreKeys":{"a":"a"}}}}" 1`] = `
+Object {
+  "recursively_converts": Object {
+    "another_key": Object {
+      "more_keys": Object {
+        "a": "a",
+      },
+    },
+  },
+}
+`;
+
+exports[`The Api store \`convertBodyCasing\` correctly converts "{"testTest123":7,"anotherTestTrickier":false}" 1`] = `
+Object {
+  "another_test_trickier": false,
+  "test_test123": 7,
+}
+`;
+
+exports[`The Api store \`convertBodyCasing\` correctly converts "90" 1`] = `90`;
+
+exports[`The Api store \`convertBodyCasing\` correctly converts "true" 1`] = `true`;

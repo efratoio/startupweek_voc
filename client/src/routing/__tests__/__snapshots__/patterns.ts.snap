@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The URL pattern "patternDashboard" with the URL "/dashboard" returns the expected result 1`] = `Object {}`;
+
+exports[`The URL pattern "patternDashboard" with the URL "/dashboard/" returns the expected result 1`] = `Object {}`;
+
+exports[`The URL pattern "patternLogin" with the URL "/login" returns the expected result 1`] = `Object {}`;
+
+exports[`The URL pattern "patternLogin" with the URL "/login/" returns the expected result 1`] = `Object {}`;
+
+exports[`The URL pattern "patternSignup" with the URL "/signup" returns the expected result 1`] = `Object {}`;
+
+exports[`The URL pattern "patternSignup" with the URL "/signup/" returns the expected result 1`] = `Object {}`;
