@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ApiStore } from "store";
+import { TransactionsStore } from "store";
 import * as css from "./dashboard.scss";
 import { requireLogin } from "utils";
 import { observable, action, computed } from "mobx";
@@ -9,14 +9,14 @@ import { validateCategory, validateAmount } from "utils";
 
 @requireLogin
 export class PageInut extends React.Component {
-    @inject private api: ApiStore;
+    @inject private transactions: TransactionsStore;
 
     @observable private category = "";
     @observable private amount = "";
 
     @bind @action private handleCategory({ target }: React.SyntheticInputEvent) { this.category = target.value; }
     @bind @action private handleAmount({ target }: React.SyntheticInputEvent) { this.amount = target.value; }
-    @bind private handleSubmit() { this.api.doSubmitItem(this.category, parseInt(this.amount)); }
+    @bind private handleSubmit() { this.transactions.doSave(this.category, parseInt(this.amount)); }
 
     @computed private get categoryValid() { return validateCategory(this.category); }
     @computed private get amountValid() { return validateAmount(this.amount); }

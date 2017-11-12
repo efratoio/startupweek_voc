@@ -15,3 +15,16 @@ export async function processSpeech(data: string): Promise<Transaction> {
         body
     }));
 }
+
+export async function save(token: string, category: string, amount: number, currency: string): Promise<Transaction> {
+    const body = new FormData();
+    body.append("user", token);
+    body.append("category", category);
+    body.append("amount", `${amount}`);
+    body.append("currency", currency);
+
+    return parseApi<Transaction>(fetch(url(`/save`), {
+        method: "POST",
+        body
+    }));
+}

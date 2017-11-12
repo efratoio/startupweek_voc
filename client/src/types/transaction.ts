@@ -1,7 +1,8 @@
 export interface Transaction {
     // readonly name: string;
     // readonly tags: string[];
-    readonly value: number;
+    readonly amount: number;
     // readonly organization: string;
     readonly category: string;
+	readonly currency: string;
 }

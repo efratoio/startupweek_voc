@@ -17,9 +17,9 @@ export class TransactionList extends React.Component {
         return (
             <List>
                 {
-                    transactions.map(({ category, value}, index) => ([
+                    transactions.map(({ category, amount, currency }, index) => ([
                         <Divider />,
-                        <ListItem key={index} disabled primaryText={`${category}: ${value}`} />,
+                        <ListItem key={index} disabled primaryText={`${category}: ${amount}${currency}`} />,
                     ]))
                 }
             </List>

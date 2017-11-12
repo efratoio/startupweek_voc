@@ -33,10 +33,15 @@ export class CategoryPieChart extends React.Component {
         return categoryArray.findIndex(({ category }) => category === this.activeCategory);
     }
 
-    @computed private get total(): number {
+    @computed private get total(): {amount: number, currency: string} {
         return this.transactions.transactions.reduce(
-            (current: number, transaction: Transaction) => current + transaction.value,
-            0
+            (current: {amount: number, currency: string}, transaction: Transaction) => ({
+                amount: current.amount + transaction.amount,
+                currency: current.currency.indexOf(transaction.currency) === -1 ?
+                    `${current.currency}${current.currency.length ? " or " : ""}${transaction.currency}` :
+                    current.currency
+            }),
+            {amount: 0, currency: ""}
         );
     }
 
@@ -68,7 +73,7 @@ export class CategoryPieChart extends React.Component {
                     />
                 </PieChart>
                 {
-                    activeIndex !== -1 ?(
+                    activeIndex !== -1 ? (
                         <button className={css["button"]} onClick={this.doShowAll}>
                             Show all
                         </button>
@@ -79,7 +84,9 @@ export class CategoryPieChart extends React.Component {
                         <div className={css["total-container"]}>
                             <div className={css["total-box"]}>
                                 <p>Total</p>
-                                <p className={css["total"]}>{total}</p>
+                                <p className={css["total"]}>
+                                    {`${total.amount}${total.currency}`}
+                                </p>
                             </div>
                         </div>
                     ) : null
