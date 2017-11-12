@@ -1,5 +1,5 @@
 import { component, inject, initialize } from "tsdi";
-import { TransactionsResult, transactions } from "api";
+import { TransactionsResult, transactions, processSpeech } from "api";
 import { ApiStore } from ".";
 import { observable, action, computed } from "mobx";
 import { Transaction } from "types";
@@ -12,6 +12,7 @@ export class TransactionsStore {
     @inject private api: ApiStore;
 
     @observable public transactions: Transaction[] = [];
+    @observable public unsavedTransaction: Transaction;
 
     @computed public get byCategory(): { [category: string]: number } {
         return this.transactions.reduce((result, transaction) => {
@@ -33,6 +34,18 @@ export class TransactionsStore {
                 value: parseFloat(item[2]),
                 category: item[1]
             }));
+        }
+    }
+
+    @action
+    public async doGenerateTransactionFromString(data: string) {
+        const response = await this.api.call(
+            "doGenerateTransactionFromString",
+            () => processSpeech(data)
+        );
+
+        if (response) {
+            this.unsavedTransaction = response;
         }
     }
 }

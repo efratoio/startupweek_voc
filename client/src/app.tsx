@@ -9,7 +9,7 @@ import { TSDI, component, factory } from "tsdi";
 import { History } from "history";
 import { isProductionEnvironment } from "utils/environment";
 import { AppContainer } from "ui/app-container";
-import { PageLogin, PageDashboard, PageSignup } from "pages";
+import { PageLogin, PageDashboard, PageSignup, PageAdd } from "pages";
 import { Route, Switch, Redirect } from "react-router-dom";
 
 function Container() {
@@ -27,6 +27,7 @@ export function App() {
                 <Redirect exact from="/" to="/login" />
                 <Route path="/login" component={PageLogin} />
                 <Route path="/signup" component={PageSignup} />
+                <Route path="/add" component={PageAdd} />
                 <Route component={Container} />
             </Switch>
         </AppContainer>

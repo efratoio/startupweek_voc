@@ -1,14 +1,20 @@
 import * as React from "react";
+import { external, inject } from "tsdi";
 import bind from "bind-decorator";
+import { History } from "history";
 
-import { FaBars, FaPlusCircle} from "react-icons/lib/fa";
+import { FaBars, FaPlusCircle } from "react-icons/lib/fa";
+import { routeAdd } from "routing";
 
 import * as css from "./action-bar.scss";
 
+@external
 export class ActionBar extends React.Component {
+	@inject private browserHistory: History;
+
 	@bind
 	private handleAdd() {
-
+		this.browserHistory.push(routeAdd());
 	}
 
 	@bind
