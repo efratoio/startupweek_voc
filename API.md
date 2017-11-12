@@ -62,4 +62,6 @@
 * **Success Response:**
 
   * **Code:** 200 <br />
-    **Content:** json object with entire data of the user
+    **Content:** Array of arrays of type:
+    [string <user>, string <category>, char <currency>, float <amount>, string <datetime> ]
+    
