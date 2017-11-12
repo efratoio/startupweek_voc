@@ -8,7 +8,7 @@ import { observer } from "mobx-react";
 import { action, observable, computed } from "mobx";
 import { bind } from "bind-decorator";
 import { ActiveShape } from "./active-shape";
-import { Category } from "./types"
+import { Category } from "./types";
 
 import * as css from "./category-pie-chart.scss";
 
