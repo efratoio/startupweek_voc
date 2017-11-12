@@ -2,7 +2,7 @@ from app import app, api
 from flask import jsonify
 from flask import request
 import json
-
+from datetime import datetime
 
 
 @app.route('/process', methods=['POST'])
@@ -19,7 +19,7 @@ def save_date():
 	print(data)
 
 	print(app.__db)
-	app.__db.append((data["user"],data["category"],data["amount"],data["currency"]))
+	app.__db.append((data["user"],data["category"],data["amount"],data["currency"],datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
 	return (jsonify(data), 200)
 
 
