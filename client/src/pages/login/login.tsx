@@ -25,7 +25,7 @@ export class PageLogin extends React.Component {
     }
 
     @computed private get usernameValid() { return validateUsername(this.username); }
-    @computed private get passwordValid() { return validatePassword(this.password); }
+    @computed private get passwordValid() { return true; } // validatePassword(this.password); }
     @computed private get allValid() { return this.usernameValid && this.passwordValid; }
 
     public render() {
@@ -42,7 +42,7 @@ export class PageLogin extends React.Component {
                             />
                         </label>
                     </p>
-                    <p>
+                    {/*<p>
                         <label>
                             Password
                             <input
@@ -51,7 +51,7 @@ export class PageLogin extends React.Component {
                                 onChange={this.handlePassword}
                             />
                         </label>
-                    </p>
+                    </p>*/}
                     <button type="submit" disabled={!this.allValid}>Login</button>
                 </form>
                 <p>Don't have an account? Signup <Link to={routeSignup()}>here</Link>.</p>

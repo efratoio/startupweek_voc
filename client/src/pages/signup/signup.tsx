@@ -5,7 +5,7 @@ import { observable, action, computed } from "mobx";
 import { observer } from "mobx-react";
 import { inject, external } from "tsdi";
 import bind from "bind-decorator";
-import { validateEMail, validatePassword } from "utils";
+import { validateUsername, validatePassword } from "utils";
 import { RequestStatus } from "request-status";
 import { ApiStore, SignupStore } from "store";
 import * as css from "./signup.scss";
@@ -15,21 +15,21 @@ export class PageSignup extends React.Component {
     @inject private api: ApiStore;
     @inject private signup: SignupStore;
 
-    @observable private email = "";
+    @observable private username = "";
     @observable private password = "";
     @observable private repeat = "";
 
-    @bind @action private handleEMail({ target }: React.SyntheticInputEvent) { this.email = target.value; }
+    @bind @action private handleUsername({ target }: React.SyntheticInputEvent) { this.username = target.value; }
     @bind @action private handlePassword({ target }: React.SyntheticInputEvent) { this.password = target.value; }
     @bind @action private handleRepeat({ target }: React.SyntheticInputEvent) { this.repeat = target.value; }
     @bind private handleSubmit(event: React.SyntheticEvent<HTMLFormElement>) {
         event.preventDefault();
-        this.signup.doSignup(this.email, this.password);
+        this.signup.doSignup(this.username, this.password);
     }
 
-    @computed private get emailValid() { return validateEMail(this.email); }
-    @computed private get passwordValid() { return validatePassword(this.password) && this.password === this.repeat; }
-    @computed private get allValid() { return this.emailValid && this.passwordValid; }
+    @computed private get usernameValid() { return validateUsername(this.username); }
+    @computed private get passwordValid() { return true; } // validatePassword(this.password) && this.password === this.repeat; }
+    @computed private get allValid() { return this.usernameValid && this.passwordValid; }
 
     public render() {
         return (
@@ -38,14 +38,14 @@ export class PageSignup extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     <p>
                         <label>
-                            Email
+                            Username
                             <input
-                                value={this.email}
-                                onChange={this.handleEMail}
+                                value={this.username}
+                                onChange={this.handleUsername}
                             />
                         </label>
                     </p>
-                    <p>
+                    {/*<p>
                         <label>
                             Password
                             <input
@@ -64,7 +64,7 @@ export class PageSignup extends React.Component {
                                 onChange={this.handleRepeat}
                             />
                         </label>
-                    </p>
+                    </p>*/}
                     <button type="submit" disabled={!this.allValid}>Signup</button>
                 </form>
                 <p>Already have an account? Login <Link to={routeLogin()}>here</Link>.</p>

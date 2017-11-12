@@ -11,8 +11,8 @@ export class SignupStore {
     @observable public signupResult: Boolean;
 
     @bind @action
-    public async doSignup(email: string, password: string) {
-        const body = { email, password };
+    public async doSignup(username: string, password: string) {
+        const body = { username, password };
         const response = await this.api.call(
             "doSignup",
             async () => {
@@ -22,7 +22,7 @@ export class SignupStore {
             true,
         );
         if (response) {
-            await this.api.doLogin(email, password);
+            await this.api.doLogin(username, password);
         }
     }
 }
