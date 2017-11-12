@@ -1,0 +1,66 @@
+<html>
+	<head></head>
+	<body>
+		<div id="indicator" style="width: 20px; height: 20px; border-radius: 50%; background-color: grey;"></div>
+		<button id="record">Record</button>
+		<ul id="results"/></ul>
+
+		<script>
+
+			const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+			const recognition = new SpeechRecognition();
+
+			recognition.lang = 'en-US';
+			recognition.interimResults = false;
+			recognition.maxAlternatives = 1;
+
+			let recording = false;
+
+			const indicator = document.querySelector('#indicator');
+			const output = document.querySelector('#results')
+
+			document.querySelector('#record').addEventListener('click', () => {
+				if (!recording) {
+					recognition.start();
+				} else {
+					recognition.stop();
+				}
+
+				recording = !recording;
+
+				indicator.style['background-color'] = recording ? 'red' : 'grey';
+			});
+
+			recognition.addEventListener('speechstart', () => {
+				console.log('Speech has been detected.');
+				indicator.style['background-color'] = 'green';
+			});
+
+			recognition.addEventListener('result', (e) => {
+				console.log('Result has been detected.');
+
+				let last = e.results.length - 1;
+				let text = e.results[last][0].transcript;
+				const confidence = e.results[0][0].confidence;
+
+				console.log(e);
+
+				const output = document.createElement('li');
+				output.innerHTML = `${text} (${confidence})`;
+				output.append(result);
+			});
+
+			recognition.addEventListener('speechend', () => {
+				recognition.stop();
+				recording = false;
+				indicator.style['background-color'] = 'grey';
+			});
+
+			recognition.addEventListener('error', (e) => {
+				console.error('Error: ' + e.error);
+				recording = fasle;
+				indicator.style['background-color'] = 'grey';
+			});
+		</script>
+	</body>
+</html>
