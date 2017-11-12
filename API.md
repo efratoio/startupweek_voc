@@ -63,5 +63,5 @@
 
   * **Code:** 200 <br />
     **Content:** Array of arrays of type:
-    [string <user>, string <category>, char <currency>, float <amount>, string <datetime> ]
+    [string (user), string (category), char (currency), float (amount), string (datetime) ]
     
