@@ -8,9 +8,8 @@ import { SpeechRecognitionApi } from "factories";
 import { TransactionsStore } from "store";
 
 import Dialog from 'material-ui/Dialog';
+import CircularProgress from 'material-ui/CircularProgress';
 import MicIcon from 'material-ui/svg-icons/av/mic';
-
-import { FaSpinner } from "react-icons/lib/fa";
 
 import * as css from "./speech-recognition-overlay.scss";
 
@@ -84,7 +83,7 @@ export class SpeechRecognitionOverlay extends React.Component<SpeechRecognitionO
 				) : null
 			}
 			{
-				isRecording ? (<p>Say: coffee 3 dollars</p>) : <FaSpinner className={css["spinner"]} size={50}/>
+				isRecording ? (<p>Say: coffee 3 dollars</p>) : <CircularProgress size={50} thickness={5} />
 			}
 			</Dialog>
 		);
