@@ -12,7 +12,7 @@ export class TransactionsStore {
     @inject private api: ApiStore;
 
     @observable public transactions: Transaction[] = [];
-    @observable public unsavedTransaction: Transaction;
+    @observable public unsavedTransaction: Transaction = { category: "", amount: 0, currency: "Euro" };
 
     @computed public get byCategory(): { [category: string]: number } {
         return this.transactions.reduce((result, transaction) => {
@@ -51,7 +51,9 @@ export class TransactionsStore {
     }
 
     @action
-    public async doSave(category: string, amount: number) {
+    public async doSave() {
+        const category = this.unsavedTransaction.category;
+        const amount = this.unsavedTransaction.amount;
         const body = { category, amount };
         const response = await this.api.call(
             "doSubmitItem",
@@ -62,4 +64,16 @@ export class TransactionsStore {
             this.transactions.push(response);
         }
     }
+        @action
+        public editUnsavedTransaction(newCategory?: string, newAmount?: number, newCurrency?: string) {
+            const newUnsavedTransaction = {
+                category: newCategory || this.unsavedTransaction.category,
+                amount: newAmount || this.unsavedTransaction.amount,
+                currency: newCurrency || this.unsavedTransaction.currency,
+            };
+            if (newAmount === 0) {
+                newUnsavedTransaction.amount = 0;
+            }
+            this.unsavedTransaction = newUnsavedTransaction;
+        }
 }
