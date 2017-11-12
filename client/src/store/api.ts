@@ -146,4 +146,27 @@ export class ApiStore {
     public get latestError() {
         return this.errors[this.errors.length - 1];
     }
+
+    @bind @action
+    public async doSubmitItem(category: string, amount: number) {
+        const body = { category, amount };
+        const response = await this.call(
+            "doSubmitItem",
+            async () => {
+                // TODO: Perform request here!
+                return {
+                    category: "some-user-id",
+                    amount: "some-auth-token",
+                };
+            },
+            true,
+        );
+        if (response) {
+            const { id, token } = response;
+            this.authToken = token;
+            this.userId = id;
+            this.save();
+            this.browserHistory.replace(routeDashboard());
+        }
+    }
 }
