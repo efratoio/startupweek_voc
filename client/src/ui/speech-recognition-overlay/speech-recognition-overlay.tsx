@@ -7,12 +7,24 @@ import { action, observable, computed } from "mobx";
 import { SpeechRecognitionApi } from "factories";
 import { TransactionsStore } from "store";
 
-import { FaMicrophone, FaSpinner } from "react-icons/lib/fa";
+import Dialog from 'material-ui/Dialog';
+import MicIcon from 'material-ui/svg-icons/av/mic';
+
+import { FaSpinner } from "react-icons/lib/fa";
 
 import * as css from "./speech-recognition-overlay.scss";
 
+export interface SpeechRecognitionOverlayProps {
+	open: boolean;
+}
+
+const LARGE_ICON = {
+	width: "50px",
+	height: "50px"
+}
+
 @observer @external
-export class SpeechRecognitionOverlay extends React.Component {
+export class SpeechRecognitionOverlay extends React.Component<SpeechRecognitionOverlayProps> {
 	@inject private speechRecognition: SpeechRecognitionApi;
 	@inject private transactions: TransactionsStore;
 
@@ -59,17 +71,22 @@ export class SpeechRecognitionOverlay extends React.Component {
 	public render(): JSX.Element {
 		const { isRecording, speechDetected } = this;
 		return (
-			<div className={css["speech-recognition-overlay"]}>
-				<div className={css["overlay-box"]}>
-					{
-						isRecording ? <FaMicrophone size={100} color={speechDetected ? "green" : "grey"}/> : null
-					}
-					{
-						!isRecording ? <FaSpinner size={100}/> : null
-					}
-
-				</div>
-			</div>
+			<Dialog
+				modal={true}
+				open={this.props.open}
+				contentClassName={css["speech-recognition-overlay-content"]}
+			>
+			{
+				isRecording ? (
+					<div className={css["overlay-box"]}>
+						<MicIcon style={LARGE_ICON} color={speechDetected ? "green" : "grey"}/>
+					</div>
+				) : null
+			}
+			{
+				isRecording ? (<p>Say: coffee 3 dollars</p>) : <FaSpinner className={css["spinner"]} size={50}/>
+			}
+			</Dialog>
 		);
 	}
 }

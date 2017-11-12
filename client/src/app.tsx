@@ -8,6 +8,7 @@ import "store";
 import { TSDI, component, factory } from "tsdi";
 import { History } from "history";
 import { isProductionEnvironment } from "utils/environment";
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { AppContainer } from "ui/app-container";
 import { PageLogin, PageDashboard, PageSignup, PageAdd } from "pages";
 import { Route, Switch, Redirect } from "react-router-dom";
@@ -22,15 +23,17 @@ function Container() {
 
 export function App() {
     return (
-        <AppContainer>
-            <Switch>
-                <Redirect exact from="/" to="/login" />
-                <Route path="/login" component={PageLogin} />
-                <Route path="/signup" component={PageSignup} />
-                <Route path="/add" component={PageAdd} />
-                <Route component={Container} />
-            </Switch>
-        </AppContainer>
+        <MuiThemeProvider>
+             <AppContainer>
+                <Switch>
+                    <Redirect exact from="/" to="/login" />
+                    <Route path="/login" component={PageLogin} />
+                    <Route path="/signup" component={PageSignup} />
+                    <Route path="/add" component={PageAdd} />
+                    <Route component={Container} />
+                </Switch>
+            </AppContainer>
+        </MuiThemeProvider>
     );
 }
 

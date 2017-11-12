@@ -17,9 +17,7 @@ export class PageAdd extends React.Component {
 		return (
 			<div>
 				<h1> add entry</h1>
-				{
-					!unsavedTransaction ? <SpeechRecognitionOverlay /> : null
-				}
+				<SpeechRecognitionOverlay open={!unsavedTransaction}/>
 				{
 					unsavedTransaction ? JSON.stringify(unsavedTransaction) : null
 				}

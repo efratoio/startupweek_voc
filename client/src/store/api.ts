@@ -162,11 +162,7 @@ export class ApiStore {
             true,
         );
         if (response) {
-            const { id, token } = response;
-            this.authToken = token;
-            this.userId = id;
-            this.save();
-            this.browserHistory.replace(routeDashboard());
+            // TODO: handle response
         }
     }
 }

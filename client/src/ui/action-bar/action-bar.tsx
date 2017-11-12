@@ -3,10 +3,12 @@ import { external, inject } from "tsdi";
 import bind from "bind-decorator";
 import { History } from "history";
 
-import { FaBars, FaPlusCircle } from "react-icons/lib/fa";
 import { routeAdd } from "routing";
 
-import * as css from "./action-bar.scss";
+import AppBar from 'material-ui/AppBar';
+import IconButton from 'material-ui/IconButton';
+
+import ContentAddCircleOutlineIcon from 'material-ui/svg-icons/content/add-circle-outline';
 
 @external
 export class ActionBar extends React.Component {
@@ -24,14 +26,11 @@ export class ActionBar extends React.Component {
 
 	public render(): JSX.Element {
 		return (
-			<div className={css["action-bar"]}>
-				<button onClick={this.handleMenu} className={css.button}>
-					<FaBars size={30}/>
-				</button>
-				<button onClick={this.handleAdd} className={css.button}>
-					<FaPlusCircle size={30}/>
-				</button>
-			</div>
+			<AppBar
+				iconElementRight={<IconButton><ContentAddCircleOutlineIcon/></IconButton>}
+				onRightIconButtonTouchTap={this.handleAdd}
+				onLeftIconButtonTouchTap={this.handleMenu}
+			/>
 		);
 	}
 }
