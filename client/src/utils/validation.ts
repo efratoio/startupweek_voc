@@ -12,3 +12,11 @@ export function validateUsername(username: string): boolean {
 export function validatePassword(password: string): boolean {
     return password.length >= 1;
 }
+
+export function validateCategory(category: string): boolean {
+    return true;
+}
+
+export function validateAmount(amount: string): boolean {
+    return parseInt(amount) !== NaN;
+}
