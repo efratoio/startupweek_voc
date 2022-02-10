@@ -81,7 +81,7 @@
     "git-revision-webpack-plugin": "^2.5.1",
     "jest": "^20.0.4",
     "mobx-react-devtools": "^4.2.15",
-    "node-sass": "^4.5.3",
+    "node-sass": "^7.0.0",
     "nodemon": "^1.12.1",
     "progress-bar-webpack-plugin": "^1.10.0",
     "react-test-renderer": "^15.6.1",
